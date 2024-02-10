@@ -3,7 +3,7 @@
 """Define a class baseModel."""
 
 from datetime import datetime
-from . import storage
+import models
 import uuid
 
 
@@ -42,7 +42,7 @@ class BaseModel:
     def save(self):
         """updates the public instance with current time."""
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         '''convert time object into string.
