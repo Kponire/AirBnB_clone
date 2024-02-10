@@ -42,6 +42,7 @@ class BaseModel:
     def save(self):
         """updates the public instance with current time."""
         self.updated_at = datetime.now()
+        models.storage.new(self)
         models.storage.save()
 
     def to_dict(self):
@@ -55,3 +56,7 @@ class BaseModel:
         dict_obj['created_at'] = self.created_at.isoformat()
         dict_obj['updated_at'] = self.updated_at.isoformat()
         return dict_obj
+
+    def delete(self):
+        """delete the current instance from the storage"""
+        models.storage.delete(self)
