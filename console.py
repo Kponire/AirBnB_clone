@@ -22,7 +22,9 @@ classes = {
         "User": User
         }
 
+
 class HBNBCommand(cmd.Cmd):
+
     """The HBNBCommand Class.
 
     Attributes:
@@ -31,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
-    def _key_value_parser(self, args):
+    def parser(self, args):
         """creates a dictionary from a list of strings"""
         new_dict = {}
         for arg in args:
@@ -44,10 +46,10 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     try:
                         value = int(value)
-                    except:
+                    except ValueError:
                         try:
                             value = float(value)
-                        except:
+                        except ValueError:
                             continue
                 new_dict[key] = value
         return new_dict
@@ -78,6 +80,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         print(instance.id)
         instance.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
